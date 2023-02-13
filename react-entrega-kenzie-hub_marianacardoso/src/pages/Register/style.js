@@ -39,7 +39,7 @@ export const StyledSection = styled.section`
       text-align: center;
     }
   }
-  @media (min-width: 769px) {
+  @media (min-width: 400px) {
     header {
       width: 25rem;
 

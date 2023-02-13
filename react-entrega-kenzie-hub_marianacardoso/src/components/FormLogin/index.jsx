@@ -21,6 +21,7 @@ const schema = yup
 
 export const FormLogin = ({ setUser }) => {
   const [inputType, setInputType] = useState("password");
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setInputType(inputType === "password" ? "text" : "password");
@@ -35,6 +36,7 @@ export const FormLogin = ({ setUser }) => {
   const navigate = useNavigate();
 
   const loginUser = async (data) => {
+    setLoading(true);
     try {
       const response = await api.post("sessions", data);
       const token = response.data.token;
@@ -42,10 +44,12 @@ export const FormLogin = ({ setUser }) => {
       localStorage.setItem("@TOKEN", JSON.stringify(token));
       localStorage.setItem("@USERID", JSON.stringify(userId));
       setUser(localStorage.setItem("@TOKEN", JSON.stringify(token)));
+      setLoading(false);
       toast.success("Login realizado com sucesso");
       navigate(`/dashboard/${userId}`);
     } catch (error) {
       toast.error("E-mail/senha incorretos");
+      setLoading(false);
     }
   };
 
@@ -71,6 +75,7 @@ export const FormLogin = ({ setUser }) => {
         <AiFillEye className="icon" onClick={togglePasswordVisibility} />
       </div>
       <button type="submit">Entrar</button>
+      {loading && <div className="loading">Carregando...</div>}
     </StyledForm>
   );
 };

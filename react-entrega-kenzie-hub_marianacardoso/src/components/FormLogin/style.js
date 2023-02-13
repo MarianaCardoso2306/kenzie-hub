@@ -37,4 +37,8 @@ export const StyledForm = styled.form`
   .icon:hover {
     color: #fff;
   }
+  .loading {
+    color: #fff;
+    font-size: 1rem;
+  }
 `;

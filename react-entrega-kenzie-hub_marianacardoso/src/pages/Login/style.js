@@ -5,7 +5,7 @@ export const StyledSection = styled.section`
   flex-direction: column;
   background-color: var(--grey-4);
 
-  max-width: 100vw;
+  width: 100vw;
   min-height: 100vh;
 
   img {
@@ -41,7 +41,7 @@ export const StyledSection = styled.section`
       margin: 1.6875rem;
     }
   }
-  @media (min-width: 769px) {
+  @media (min-width: 400px) {
     header {
       width: 25rem;
 
