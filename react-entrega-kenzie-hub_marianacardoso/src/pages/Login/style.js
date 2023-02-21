@@ -42,11 +42,6 @@ export const StyledSection = styled.section`
     }
   }
   @media (min-width: 400px) {
-    header {
-      width: 25rem;
-
-      margin: 3.125rem auto;
-    }
     .form {
       width: 23.125rem;
       margin: 2.375rem auto 90px auto;

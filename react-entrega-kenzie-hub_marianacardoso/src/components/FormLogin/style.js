@@ -7,7 +7,7 @@ export const StyledForm = styled.form`
   gap: 1.25rem;
 
   label {
-    font-size: 0.5625rem;
+    font-size: 0.75rem;
     color: var(--grey-0);
   }
 

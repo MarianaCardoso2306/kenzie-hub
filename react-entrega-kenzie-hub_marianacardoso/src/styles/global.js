@@ -33,7 +33,6 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Inter', sans-serif;
         padding: 0.625rem 1rem;
         color: var(--grey-1);
-        line-height: 1.5rem;
     }
     input::placeholder{
         color: var(--grey-1);

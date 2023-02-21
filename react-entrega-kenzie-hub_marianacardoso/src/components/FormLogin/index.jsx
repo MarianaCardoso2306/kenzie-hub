@@ -1,13 +1,11 @@
 import { StyledForm } from "./style";
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { AiFillEye } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 const schema = yup
   .object({
@@ -20,12 +18,13 @@ const schema = yup
   .required();
 
 export const FormLogin = ({ setUser }) => {
+  const { loginUser, loading } = useContext(UserContext);
   const [inputType, setInputType] = useState("password");
-  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
+
   const {
     register,
     handleSubmit,
@@ -33,25 +32,6 @@ export const FormLogin = ({ setUser }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
-
-  const loginUser = async (data) => {
-    setLoading(true);
-    try {
-      const response = await api.post("sessions", data);
-      const token = response.data.token;
-      const userId = response.data.user.id;
-      localStorage.setItem("@TOKEN", JSON.stringify(token));
-      localStorage.setItem("@USERID", JSON.stringify(userId));
-      setUser(localStorage.setItem("@TOKEN", JSON.stringify(token)));
-      setLoading(false);
-      toast.success("Login realizado com sucesso");
-      navigate(`/dashboard/${userId}`);
-    } catch (error) {
-      toast.error("E-mail/senha incorretos");
-      setLoading(false);
-    }
-  };
 
   return (
     <StyledForm onSubmit={handleSubmit(loginUser)}>

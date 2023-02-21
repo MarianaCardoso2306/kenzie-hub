@@ -1,4 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
 import { StyledSection } from "./style";
 import { FormRegister } from "../../components/FormRegister";
 import { Header } from "../../components/Header";

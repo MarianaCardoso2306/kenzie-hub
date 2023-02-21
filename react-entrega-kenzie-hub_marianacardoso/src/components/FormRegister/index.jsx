@@ -1,11 +1,10 @@
 import { StyledForm } from "./style";
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { UserContext } from "../../providers/UserContext";
+import { useContext } from "react";
 
 const schema = yup
   .object({
@@ -34,6 +33,7 @@ const schema = yup
   .required();
 
 export const FormRegister = () => {
+  const { registerUser } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -41,17 +41,6 @@ export const FormRegister = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
-
-  const registerUser = async (data) => {
-    try {
-      await api.post("users", data);
-      toast.success("Conta criada com sucesso!");
-      navigate("/");
-    } catch (error) {
-      toast.error("Ops! algo deu errado");
-    }
-  };
 
   return (
     <StyledForm onSubmit={handleSubmit(registerUser)}>

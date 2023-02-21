@@ -1,19 +1,15 @@
 import { StyledHeader } from "./style";
 import Logo from "../../assets/Logo.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 export const Header = ({ buttonText }) => {
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  const { logOutUser } = useContext(UserContext);
 
   return (
     <StyledHeader>
       <img src={Logo} alt="logo da kenzie hub" />
-      <button onClick={logOut}>{buttonText}</button>
+      <button onClick={logOutUser}>{buttonText}</button>
     </StyledHeader>
   );
 };
