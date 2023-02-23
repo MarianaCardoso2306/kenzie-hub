@@ -7,13 +7,6 @@ import { CustomToastContainer } from "./styles/toast";
 function App() {
   const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("@TOKEN");
-  //   if (token) {
-  //     setUser(JSON.parse(token));
-  //   }
-  // }, []);
-
   return (
     <>
       <AppRoutes user={user} setUser={setUser} />

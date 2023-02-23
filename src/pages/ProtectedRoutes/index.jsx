@@ -10,7 +10,7 @@ export const ProtectedRoutes = () => {
     if (!user) {
       navigate("/");
     }
-  }, []);
+  }, [user]);
 
   return <>{user ? <Outlet /> : null}</>;
 };
